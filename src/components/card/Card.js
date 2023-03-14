@@ -24,7 +24,7 @@ export default function Card(props) {
     return (
         <div>
 
-            <Link to={'/item-detail'} state={{ item: item }} onClick={() => setPokemon(item.name)}>
+            <Link to={'/item-detail'} state={{ item: item }} onClick={() => setPokemon(item)}>
 
                 <div className="container_item" onMouseEnter={() => handleAnimateImg(true)}
                     onMouseLeave={() => handleAnimateImg(false)}>

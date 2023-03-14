@@ -80,7 +80,7 @@ function Pokerlist(props) {
 
         <div className="content">
             <div className="content_list_pokemon">
-                <h2>Último pokemon selecionado: {lastPokemonSelected}</h2>
+                <h2>Último pokemon selecionado: {lastPokemonSelected?.name}</h2>
                 <div className="pagination">
                     <div className="prev">
                         <button onClick={() => prevNext("prev")}>

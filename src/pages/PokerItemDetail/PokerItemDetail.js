@@ -1,18 +1,19 @@
 import { useLocation, useNavigation } from "react-router-dom";
 import Card from "../../components/card/Card";
-import { useCallback, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { DetailsAbilitys, PokerItemDetailGetData } from "../../services/PokerList.service";
 import "./PokerItemDetail.css";
+import { CounterContext } from "../../context/ContextAPI";
 
 
 function Desc(props) {
     let [abilitysDesc, setAbilitysDesc] = useState("");
     let { name, url } = props;
-    const getDesAbilitys = useCallback(async (url) => {
-
+    const getDesAbilitys = async (url) => {
+        
         let desc = await DetailsAbilitys(url);
         setAbilitysDesc(desc)
-    })
+    }
     return (
         <div>
             <div className="abilitys_details">
@@ -26,29 +27,26 @@ function Desc(props) {
 
 export default function PokerItemDetail(props) {
     // const { item } = props.location.state;
-    let { state } = useLocation();
-    let { item } = state;
+    const { lastPokemonSelected } = useContext(CounterContext);
+    console.log(lastPokemonSelected);
     let [details, setDetails] = useState();
 
 
     useEffect(() => {
         let fethData = async () => {
-            let d = await PokerItemDetailGetData(1);
+            let d = await PokerItemDetailGetData(lastPokemonSelected.slot);
             console.log(d);
             setDetails(d)
         }
         fethData()
     }, [])
-    console.log(state);
-
-
 
     return (
         <div className="content">
 
-            <div className="content_item" key={item.name}>
+            <div className="content_item" key={lastPokemonSelected.name}>
                 <div className="abilitys">
-                    <Card item={item}></Card>
+                    <Card item={lastPokemonSelected}></Card>
                     <div className="abilitys_list">
                         <h2>Espécie</h2>
                         <div>

@@ -19,7 +19,7 @@ export const PorkerListGetData = (offset) => {
 
 export const PokerItemDetailGetData = (slot) => {
     let detailUrl = `https://pokeapi.co/api/v2/pokemon/${slot}`;
-
+    console.log("slot"+slot);
     return axiosInstance.get(detailUrl).then((res) => {
         return {
             abilities: res.data.abilities,
