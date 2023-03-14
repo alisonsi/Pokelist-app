@@ -1,13 +1,35 @@
 import { useLocation, useNavigation } from "react-router-dom";
 import Card from "../../components/card/Card";
-import { useEffect, useState } from "react";
-import { PokerItemDetailGetData } from "../../services/PokerList.service";
+import { useCallback, useEffect, useState } from "react";
+import { DetailsAbilitys, PokerItemDetailGetData } from "../../services/PokerList.service";
+import "./PokerItemDetail.css";
+
+
+function Desc(props) {
+    let [abilitysDesc, setAbilitysDesc] = useState("");
+    let { name, url } = props;
+    const getDesAbilitys = useCallback(async (url) => {
+
+        let desc = await DetailsAbilitys(url);
+        setAbilitysDesc(desc)
+    })
+    return (
+        <div>
+            <div className="abilitys_details">
+                <p>{name}</p>
+                <button onClick={() => getDesAbilitys(url)}>Detalhes</button>
+            </div>
+            <div className="abilitys_desc"> {abilitysDesc}</div>
+        </div>
+    )
+}
 
 export default function PokerItemDetail(props) {
     // const { item } = props.location.state;
     let { state } = useLocation();
     let { item } = state;
     let [details, setDetails] = useState();
+
 
     useEffect(() => {
         let fethData = async () => {
@@ -16,13 +38,38 @@ export default function PokerItemDetail(props) {
             setDetails(d)
         }
         fethData()
-    })
+    }, [])
     console.log(state);
+
+
+
     return (
-        <div>
-            <h1>{item.name}</h1>
+        <div className="content">
+
             <div className="content_item" key={item.name}>
-                <Card item={item}></Card>
+                <div className="abilitys">
+                    <Card item={item}></Card>
+                    <div className="abilitys_list">
+                        <h2>Espécie</h2>
+                        <div>
+                            {!!details ? <p>{details.species.name}</p> : <div></div>}
+                        </div>
+                        <h2>Habilidades</h2>
+                        {
+                            !!details ? details.abilities.map((ab, i) => {
+                                return (
+                                    <div>
+                                        <Desc name={ab.ability.name} url={ab.ability.url}></Desc>
+                                    </div>
+
+
+                                )
+                            })
+                                : <div></div>
+                        }
+
+                    </div>
+                </div>
             </div>
         </div>
     )
