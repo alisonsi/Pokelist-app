@@ -25,6 +25,12 @@
     align-items: center;
     /* width: 65%; */
 }
+.pagination_contentn{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+}
 .prev> button, .next > button{
 
     background-color: dodgerblue;

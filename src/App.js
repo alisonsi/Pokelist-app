@@ -7,7 +7,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import CounterProvider from './context/ContextAPI';
-import PaginationProvider from './context/Pagination';
+import {PaginationProvider} from './context/Pagination';
 import PokerListProvider from './context/PokerListaData';
 import FormAddProvider from './context/FormAdd';
 

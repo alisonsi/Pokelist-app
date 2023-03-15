@@ -12,14 +12,11 @@ export default function NewPokemonprops(props) {
                 </label>
                 <br />
 
-                <label for="files" class="btn_select">Selecione uma imagem</label>
+                <label htmlFor="files" className="btn_select">Selecione uma imagem</label>
                 <p>{imagem?.name}</p>
                 <input id="files" style={{ visibility: 'hidden' }} type="file"  onChange={event => setImagem(event.target.files[0])} />
 
-                {/* <label>
-                    Selecione uma imagem:
-                    <input type="file" onChange={event => setImagem(event.target.files[0])} />
-                </label> */}
+              
                 <br />
                 <button type="submit">Enviar</button>
             </form>

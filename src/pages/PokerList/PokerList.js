@@ -8,69 +8,80 @@ import { CounterContext } from "../../context/ContextAPI";
 import { PaginationContext } from "../../context/Pagination";
 import PokerListProvider, { PokerListContext } from "../../context/PokerListaData";
 import { FormAddContext } from "../../context/FormAdd";
+import { BtnPagination } from "../../components/Pagination/Button.styles";
 
 
 
 
 function Pokerlist(props) {
     const { lastPokemonSelected } = useContext(CounterContext);
-    const { currentIndiceSelected, setIndiceSelected, currentListIndices, setCurrentListIndices } = useContext(PaginationContext)
+    const { currentIndiceSelected, setIndiceSelected, currentListIndices, setCurrentListIndices, totalPagination, setTotalPagination } = useContext(PaginationContext)
     const { data, setData } = useContext(PokerListContext)
     const { nome, setNome, imagem, setImagem, handleSubmit } = useContext(FormAddContext)
+
 
     const changePagination = (offset, index) => {
         fetchData(offset, index)
     }
     const prevNext = (option) => {
 
-
-        // let offset;
-        // let updateIndice;
-
         if (option == "next") {
-            // let isEnd = 
-            // if(currentListIndices.current)
-            let total = (data.count / 20);
-            console.log(total, currentListIndices.current);
+            if (currentListIndices.pageIndex < currentListIndices.totalPage) {
+                let total = (data.count / 20);
+                console.log(total, currentListIndices.current);
 
-            let next = {
-                ...currentListIndices,
-                current: currentListIndices.current + 10
-            };
-            setCurrentListIndices(next)
+                let next = {
+                    ...currentListIndices,
+                    current: currentListIndices.current + 10,
+                    pageIndex: currentListIndices.pageIndex += 1
+                };
 
-            // offset = data.offset += 20;
-            // updateIndice = currentIndiceSelected + 1
+                setCurrentListIndices(next)
+            }
         } else {
-            let prev = {
-                ...currentListIndices,
-                current: currentListIndices.current - 10
-            };
-            setCurrentListIndices(prev)
-            // offset = data.offset -= 20;
-            // updateIndice = currentIndiceSelected - 1
+            if (currentListIndices.pageIndex > 1) {
+                let prev = {
+                    ...currentListIndices,
+                    current: currentListIndices.current - 10,
+                    pageIndex: currentListIndices.pageIndex -= 1
+                };
+                setCurrentListIndices(prev)
+            }
+
         }
-        // fetchData(offset, updateIndice)
+
     }
     const fetchData = async (offset, index) => {
+
+        let totalPages = 0;
+        let pages = [];
+        const loadIndices = (payload) => {
+            for (let index = 0; index < payload.count; index += 20) {
+                totalPages += 1
+                pages.push(
+                    {
+                        offset: index,
+                    }
+                )
+            }
+            setTotalPagination(pages)
+            let i = {
+                ...currentListIndices,
+                totalPage: Math.ceil(totalPages / 10),
+                pageIndex: 1
+            }
+            setCurrentListIndices(i)
+        }
+
         console.log(offset, index);
         const newData = await PorkerListGetData(offset);
         setData(newData);
         setIndiceSelected(index)
-    }
-    const totalPagination = [];
-
-    const loadIndices = () => {
-        for (let index = 0; index < data.count; index += 20) {
-            totalPagination.push(
-                {
-                    offset: index,
-                }
-            )
-        }
+        loadIndices(newData)
 
     }
-    loadIndices()
+
+
 
     useEffect(() => {
         fetchData(data.offset, currentIndiceSelected)
@@ -79,32 +90,41 @@ function Pokerlist(props) {
     return (
 
         <div className="content">
+
             <div className="content_list_pokemon">
                 <h2>Último pokemon selecionado: {lastPokemonSelected?.name}</h2>
-                <div className="pagination">
-                    <div className="prev">
-                        <button onClick={() => prevNext("prev")}>
-                            <p>{'<<'}</p>
-                        </button>
-                    </div>
-                    <div className="index" >
+                <div className="pagination_contentn">
+                    <div className="pagination">
+                        <div className="prev">
+                            <BtnPagination onClick={() => prevNext("prev")}>
+                                <p>{'<<'}</p>
+                            </BtnPagination>
 
-                        {
-                            totalPagination.map((i, index) => {
-                                // return <div key={i.offset}>
-                                //     <button className="" changePagination={() => changePagination(i.offset)}>{index + 1}</button>
-                                // </div>
-                                return <ButtonPagination currentIndeceSelected={currentIndiceSelected} key={i.offset} changePagination={changePagination} item={i} index={index} />
+                        </div>
+                        <div className="index" >
 
-                            }).filter((i, index) => {
-                                return index >= currentListIndices.current && index < currentListIndices.current + 10
-                            })
-                        }
+                            {
+                                totalPagination.map((i, index) => {
+                                    // return <div key={i.offset}>
+                                    //     <button className="" changePagination={() => changePagination(i.offset)}>{index + 1}</button>
+                                    // </div>
+                                    return <ButtonPagination currentIndeceSelected={currentIndiceSelected} key={i.offset} changePagination={changePagination} item={i} index={index} />
+
+                                }).filter((i, index) => {
+                                    return index >= currentListIndices.current && index < currentListIndices.current + 10
+                                })
+                            }
+                        </div>
+                        <div className="next">
+                            <BtnPagination onClick={() => prevNext("next")}>
+                                <p>{'>>'}</p>
+                            </BtnPagination>
+                        </div>
+
                     </div>
-                    <div className="next">
-                        <button onClick={() => prevNext("next")}>
-                            <p>{'>>'}</p>
-                        </button>
+                    <div>
+                        {currentListIndices.pageIndex} /
+                        {currentListIndices.totalPage}
                     </div>
                 </div>
                 <div className="my_list_content">
