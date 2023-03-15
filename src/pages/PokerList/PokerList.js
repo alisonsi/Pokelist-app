@@ -68,7 +68,7 @@ function Pokerlist(props) {
             let i = {
                 ...currentListIndices,
                 totalPage: Math.ceil(totalPages / 10),
-                pageIndex: 1
+                pageIndex: currentListIndices.pageIndex
             }
             setCurrentListIndices(i)
         }

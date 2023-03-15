@@ -8,7 +8,7 @@ export function PaginationProvider({ children }) {
     const [currentIndiceSelected, setIndiceSelected] = useState(0)
     const [currentListIndices, setCurrentListIndices] = useState({
         current: 0,
-        pageIndex: 0,
+        pageIndex: 1,
         totalPage: 0
     });
     const [totalPagination, setTotalPagination] = useState([])
