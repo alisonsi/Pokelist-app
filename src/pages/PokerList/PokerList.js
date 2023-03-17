@@ -122,9 +122,8 @@ function Pokerlist(props) {
                         </div>
 
                     </div>
-                    <div>
-                        {currentListIndices.pageIndex} /
-                        {currentListIndices.totalPage}
+                    <div className="count_index">
+                        {currentListIndices.pageIndex}/{currentListIndices.totalPage}
                     </div>
                 </div>
                 <div className="my_list_content">

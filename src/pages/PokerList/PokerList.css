@@ -1,59 +1,67 @@
-.content{
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    flex-direction: row;
-    padding-top: 10px;
+.content {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: row;
+  padding-top: 10px;
 }
-.content_form{
-    padding-top: 55px;
+.content_form {
+  padding-top: 55px;
 }
-.content_list_pokemon{
-    width: 70%;
+.content_list_pokemon {
+  width: 70%;
 }
-.my_list_content{
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    padding: 20px;
-   
+.my_list_content {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  padding: 20px;
 }
-.pagination{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* width: 65%; */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* width: 65%; */
 }
-.pagination_contentn{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-direction: column;
+.pagination_contentn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
 }
-.prev> button, .next > button{
-
-    background-color: dodgerblue;
-    color: white;
-    width: 25px;
-    height: 25px;
-    border-radius: 5px;
-    border: none;
-    box-shadow: -1px 2px 1px 0px gray;
-    margin: 2px;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.prev > button,
+.next > button {
+  background-color: dodgerblue;
+  color: white;
+  width: 25px;
+  height: 25px;
+  border-radius: 5px;
+  border: none;
+  box-shadow: -1px 2px 1px 0px gray;
+  margin: 2px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.prev > button:hover, .next > button:hover{
-    cursor: pointer;
+.prev > button:hover,
+.next > button:hover {
+  cursor: pointer;
 }
-.index{
-    width: 300px;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-
+.index {
+  width: 300px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+.count_index {
+  background: cornflowerblue;
+  padding: 5px;
+  margin: 5px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
 }
