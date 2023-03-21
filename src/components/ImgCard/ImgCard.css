@@ -20,7 +20,7 @@ a {
   box-shadow: -3px 4px 5px gray;
   cursor: pointer;
 }
-.item > p {
+.item > .name {
   text-align: center;
   text-transform: capitalize;
   padding-left: 10px;

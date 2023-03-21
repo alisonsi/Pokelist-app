@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const BtnPagination = styled.button`
-    background: ${props => props.primary ? "dodgerblue" : "white"};
+    background: ${props => props.primary ? "black" : "white"};
     color: ${props => props.primary ? "white" : "palevioletred"};
     width: 25px;
     height: 25px;
@@ -15,6 +15,8 @@ export const BtnPagination = styled.button`
         cursor: pointer;
     }
     &.selected{
-        background-color: lightskyblue !important;
+        background-color: white !important;
+        color: black;
+        border: solid 1px
     }
 `

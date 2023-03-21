@@ -32,7 +32,7 @@ export default function Card(props) {
                         onMouseLeave={() => handleAnimateImg(false)}>
 
                         <ImgCard animated={state.animated} item={item}></ImgCard>
-                        <Bar animated={state.animated} item={item}></Bar>
+                        {/* <Bar animated={state.animated} item={item}></Bar> */}
                     </div>
             </Link>
                 </Content>

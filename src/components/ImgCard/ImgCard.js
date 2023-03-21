@@ -1,28 +1,32 @@
 import { useEffect, useState } from "react";
 import "./ImgCard.css"
-import axios from "axios";
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css'
 import defaultImg from "../../assets/default.jpeg";
+import axiosInstance from "../../services/Axios";
 
 export default function ImgCard(props) {
     let { animated, item } = props;
     const [img, setImg] = useState("");
     const [disableAnimation, setDisableAnimation] = useState(false);
+    
     useEffect(() => {
-        axios.get(item.link).then(() => {
-            setImg(item.link)
-        }).catch(() => {
-            axios.get(item.link2).then(() => {
-                setImg(item.link2)
-            }).catch(() => {
-                setImg(defaultImg)
-                setDisableAnimation(true)
-            }
-            )
-        })
 
-    }, [props.source]) // só sera ativado quando alguma pro
+        const loadImg = async () => {
+
+            axiosInstance.get(item.link).then(() => {
+                setImg(item.link)
+            }, error => {
+                axiosInstance.get(item.link2).then(() => {
+
+                    setImg(item.link2)
+                }, error => {
+                    setImg(defaultImg)
+                })
+            })
+        }
+        loadImg()
+    }, []) // só sera ativado quando alguma pro
     return (
         <div className="item" >
             {
@@ -34,7 +38,7 @@ export default function ImgCard(props) {
                     }}
                 />
             }
-            <p>{item.name}</p>
+            <p className="name">{item.name}</p>
 
         </div>
     )
