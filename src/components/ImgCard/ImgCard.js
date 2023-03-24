@@ -9,21 +9,27 @@ export default function ImgCard(props) {
     let { animated, item } = props;
     const [img, setImg] = useState("");
     const [disableAnimation, setDisableAnimation] = useState(false);
-    
+
     useEffect(() => {
 
         const loadImg = async () => {
+            if (!!item) {
 
-            axiosInstance.get(item.link).then(() => {
-                setImg(item.link)
-            }, error => {
-                axiosInstance.get(item.link2).then(() => {
+                const data = await axiosInstance.get(item.link)
+                if (data) {
+                    setImg(item.link)
+                } else {
+                    const data2 = await axiosInstance.get(item.link2)
+                    if (data2) {
+                        setImg(item.link2)
+                    } else {
+                        setImg(defaultImg)
+                    }
+                }
 
-                    setImg(item.link2)
-                }, error => {
-                    setImg(defaultImg)
-                })
-            })
+
+            }
+
         }
         loadImg()
     }, []) // só sera ativado quando alguma pro
