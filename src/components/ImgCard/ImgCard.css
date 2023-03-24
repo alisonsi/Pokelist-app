@@ -3,6 +3,7 @@ a {
 }
 
 .item {
+  position: relative;
   width: 200px;
   height: 200px;
   display: flex;
@@ -21,6 +22,8 @@ a {
   cursor: pointer;
 }
 .item > .name {
+  position: absolute;
+  bottom: 0px;
   text-align: center;
   text-transform: capitalize;
   padding-left: 10px;
