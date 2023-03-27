@@ -1,16 +1,16 @@
 import { useContext, useEffect, useState, createContext } from "react"
 import { PorkerListGetData } from "../../services/PokerList.service";
-import Card from "../../components/card/Card";
+import Card from "../../components/card";
 import ButtonPagination from "../../components/Pagination/Button";
-import NewPokemon from "../../components/NewPokemon/NewPokemon";
+import NewPokemon from "../../components/NewPokemon";
 import { CounterContext } from "../../context/ContextAPI";
 import { PaginationContext } from "../../context/Pagination";
 import { PokerListContext } from "../../context/PokerListaData";
 import { FormAddContext } from "../../context/FormAdd";
 import { BtnPagination } from "../../components/Pagination/Button.styles";
-import Loading from "../../components/Loading/Loading";
+import Loading from "../../components/Loading";
 import usePokemon from "../../hooks/usePokemon";
-import ErrorHandle from "../../components/Error/ErrorHandle";
+import ErrorHandle from "../../components/Error";
 import { PokerListStyle } from "./PokerList.style";
 
 

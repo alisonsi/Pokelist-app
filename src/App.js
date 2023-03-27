@@ -1,6 +1,6 @@
 import './App.css';
-import Pokerlist from "./pages/PokerList/PokerList";
-import PokerItemDetail from "./pages/PokerItemDetail/PokerItemDetail";
+import Pokerlist from "./pages/PokerList";
+import PokerItemDetail from "./pages/PokerItemDetail";
 
 import {
   createBrowserRouter,

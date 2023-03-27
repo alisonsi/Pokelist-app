@@ -1,5 +1,5 @@
 import { useLocation, useNavigation } from "react-router-dom";
-import Card from "../../components/card/Card";
+import Card from "../../components/card";
 import { useContext, useEffect, useState } from "react";
 import { DetailsAbilitys, PokerItemDetailGetData } from "../../services/PokerList.service";
 import { CounterContext } from "../../context/ContextAPI";

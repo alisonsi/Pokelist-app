@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
-import "./ImgCard.css"
-import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css'
+import { Content } from "./styles"
+import Skeleton from 'react-loading-skeleton';
 import defaultImg from "../../assets/default.jpeg";
-import axiosInstance from "../../services/Axios";
 
 export default function ImgCard(props) {
     let { animated, item } = props;
@@ -57,25 +55,28 @@ export default function ImgCard(props) {
     //     loadImg()
     // }, []) // só sera ativado quando alguma pro
     return (
-        <div className="item" >
+        <Content>
+            <div className="item" >
 
-            <img style={{ visibility: loadImg ? 'visible' : 'hidden' }} className={animated && !disableAnimation ? 'scaleImg' : 'scaleImgNone'} src={imgSrc} alt={item.name} onError={handleImgError} onLoad={handleImgLoad} />
+                <img style={{ visibility: loadImg ? 'visible' : 'hidden' }} className={animated && !disableAnimation ? 'scaleImg' : 'scaleImgNone'} src={imgSrc} alt={item.name} onError={handleImgError} onLoad={handleImgLoad} />
 
 
-            <div style={{
-                display: !loadImg ? 'block' : 'none',
+                <div style={{
+                    display: !loadImg ? 'block' : 'none',
 
-            }}>
-                <Skeleton circle={true} style={{
+                }}>
+                    <Skeleton circle={true} style={{
 
-                    width: 100,
-                    height: 100
-                }}> </Skeleton>
+                        width: 100,
+                        height: 100
+                    }}> </Skeleton>
 
+                </div>
+
+
+                <p className="name">{item.name}</p>
             </div>
 
-
-            <p className="name">{item.name}</p>
-        </div>
+        </Content>
     )
 }

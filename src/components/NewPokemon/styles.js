@@ -1,3 +1,6 @@
+
+import styled from 'styled-components';
+export const Content = styled.div`
 .btn_select{
     border: solid 1px darkgray;
     padding: 5px;
@@ -33,3 +36,4 @@ form >  button{
     font-size: 12px;
     padding: 8px;
 }
+`
