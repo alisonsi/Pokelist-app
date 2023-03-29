@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axiosInstance from "../services/Axios";
+import axios from 'axios';
 
 const initialState = {
     response: undefined,
@@ -21,7 +21,7 @@ export function useRequest({ url, method, params }) {
             }
         });
         try {
-            const result = await axiosInstance[method](url, { params });
+            const result = await axios[method](url, { params });
             setState((prev) => {
                 return { ...prev, response: result.data }
             });

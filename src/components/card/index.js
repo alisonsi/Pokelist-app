@@ -19,12 +19,12 @@ export default function Card(props) {
 
     return (
         <Content>
-            <Link to={'/item-detail'} state={{ item: item }} onClick={() => setPokemon(item)}>
+            <Link to={'/item-detail/' + item.slot} state={{ item: item }} onClick={() => setPokemon(item)}>
 
                 <div className="container_item" onMouseEnter={() => handleAnimateImg(true)}
                     onMouseLeave={() => handleAnimateImg(false)}>
 
-                    <ImgCard animated={state.animated} item={item}></ImgCard>
+                    <ImgCard animated={state.animated} link={item.link} link2={item.link2} name={item.name}></ImgCard>
                 </div>
             </Link>
         </Content>

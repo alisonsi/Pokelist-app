@@ -17,7 +17,7 @@ const router = createBrowserRouter([
     element: <Pokerlist />,
   },
   {
-    path: "/item-detail",
+    path: "/item-detail/:slot",
     element: <PokerItemDetail />,
   },
 ]);

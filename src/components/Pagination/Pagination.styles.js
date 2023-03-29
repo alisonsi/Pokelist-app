@@ -40,7 +40,7 @@ export const PaginationStyle = styled.div`
     justify-content: center;
   }
   .count_index {
-    background: cornflowerblue;
+    background: #000;
     padding: 5px;
     margin: 5px;
     border-radius: 8px;

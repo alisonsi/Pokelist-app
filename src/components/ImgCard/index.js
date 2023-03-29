@@ -4,14 +4,14 @@ import Skeleton from 'react-loading-skeleton';
 import defaultImg from "../../assets/default.jpeg";
 
 export default function ImgCard(props) {
-    let { animated, item } = props;
+    let { animated, link, link2, name } = props;
     const [imgSrc, setImgSrc] = useState();
     const [loadImg, setLoadImg] = useState(false);
     const [disableAnimation, setDisableAnimation] = useState(false);
     const handleImgError = () => {
-        if (imgSrc !== item.link2) {
-            setImgSrc(item.link2);
-        } else if (item.link2 !== defaultImg) {
+        if (imgSrc !== link2) {
+            setImgSrc(link2);
+        } else if (link2 !== defaultImg) {
             setDisableAnimation(true)
             setImgSrc(defaultImg);
         }
@@ -23,9 +23,9 @@ export default function ImgCard(props) {
 
     useEffect(() => {
         const load = async () => {
-            setImgSrc(item.link)
+            setImgSrc(link)
         }
-        if (item) {
+        if (link && link2 && name) {
 
             load()
         }
@@ -36,13 +36,13 @@ export default function ImgCard(props) {
     //     const loadImg = async () => {
     //         if (!!item) {
 
-    //             const data = await axiosInstance.get(item.link)
+    //             const data = await axiosInstance.get(link)
     //             if (data) {
-    //                 setImg(item.link)
+    //                 setImg(link)
     //             } else {
-    //                 const data2 = await axiosInstance.get(item.link2)
+    //                 const data2 = await axiosInstance.get(link2)
     //                 if (data2) {
-    //                     setImg(item.link2)
+    //                     setImg(link2)
     //                 } else {
     //                     setImg(defaultImg)
     //                 }
@@ -58,7 +58,7 @@ export default function ImgCard(props) {
         <Content>
             <div className="item" >
 
-                <img style={{ visibility: loadImg ? 'visible' : 'hidden' }} className={animated && !disableAnimation ? 'scaleImg' : 'scaleImgNone'} src={imgSrc} alt={item.name} onError={handleImgError} onLoad={handleImgLoad} />
+                <img role="img" style={{ visibility: loadImg ? 'visible' : 'hidden' }} className={animated && !disableAnimation ? 'scaleImg' : 'scaleImgNone'} src={imgSrc} alt={name} onError={handleImgError} onLoad={handleImgLoad} />
 
 
                 <div style={{
@@ -74,7 +74,7 @@ export default function ImgCard(props) {
                 </div>
 
 
-                <p className="name">{item.name}</p>
+                <p className="name">{name}</p>
             </div>
 
         </Content>

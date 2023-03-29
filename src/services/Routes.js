@@ -7,10 +7,8 @@ import PokerItemDetail from '../pages/PokerItemDetail/PokerItemDetail';
 function Routes() {
     return (
         <Router>
-            <Switch>
-                <Route exact path="/" component={Pokerlist} />
-                <Route path="/item-detail" component={PokerItemDetail} />
-            </Switch>
+            <Route exact path="/" component={Pokerlist} />
+            <Route path="/item-detail/:slot" element={PokerItemDetail} />
         </Router>
     );
 }

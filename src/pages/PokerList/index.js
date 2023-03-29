@@ -5,15 +5,12 @@ import ButtonPagination from "../../components/Pagination/Button";
 import NewPokemon from "../../components/NewPokemon";
 import { CounterContext } from "../../context/ContextAPI";
 import { PaginationContext } from "../../context/Pagination";
-import { PokerListContext } from "../../context/PokerListaData";
 import { FormAddContext } from "../../context/FormAdd";
 import { BtnPagination } from "../../components/Pagination/Button.styles";
 import Loading from "../../components/Loading";
 import usePokemon from "../../hooks/usePokemon";
 import ErrorHandle from "../../components/Error";
 import { PokerListStyle } from "./PokerList.style";
-
-
 
 
 function Pokerlist(props) {
@@ -131,7 +128,7 @@ function Pokerlist(props) {
 
                         {!!result?.results ? result.results.map((item, index) => {
                             return (
-                                <div className="content_item" key={item.name + index}>
+                                <div role="listitem" className="content_item" key={item.name + index}>
                                     <Card item={item}></Card>
                                 </div>
                             )

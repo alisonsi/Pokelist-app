@@ -52,5 +52,23 @@ export const PokerListDetailsStyles = styled.div`
     overflow-wrap: break-word;
     max-width: 240px;
   }
-  
+  .container_card{
+    position: relative;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    border: solid 1px gray;
+    border-radius: 20px;
+    margin: 5px;
+    margin-right: 0;
+    background-color: white;
+    color: black;
+    font-weight: bold;
+    font-size: 18px;
+    box-shadow: -3px 4px 5px gray;
+    padding: 20px;
+  }
 `

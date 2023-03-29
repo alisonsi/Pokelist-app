@@ -1,9 +1,9 @@
-import { useLocation, useNavigation } from "react-router-dom";
-import Card from "../../components/card";
-import { useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { DetailsAbilitys, PokerItemDetailGetData } from "../../services/PokerList.service";
-import { CounterContext } from "../../context/ContextAPI";
 import { PokerListDetailsStyles } from "./PokerItemDetail.styles"
+import Skeleton from 'react-loading-skeleton';
+import ImgCard from "../../components/ImgCard";
 
 function Desc(props) {
     let [abilitysDesc, setAbilitysDesc] = useState("");
@@ -25,15 +25,11 @@ function Desc(props) {
 }
 
 export default function PokerItemDetail(props) {
-    // const { item } = props.location.state;
-    const { lastPokemonSelected } = useContext(CounterContext);
-    console.log(lastPokemonSelected);
+    let { slot } = useParams();
     let [details, setDetails] = useState();
-
-
     useEffect(() => {
         let fethData = async () => {
-            let d = await PokerItemDetailGetData(lastPokemonSelected.slot);
+            let d = await PokerItemDetailGetData(slot);
             console.log(d);
             setDetails(d)
         }
@@ -44,19 +40,35 @@ export default function PokerItemDetail(props) {
         <PokerListDetailsStyles>
             <div className="content">
 
-                <div className="content_item" key={lastPokemonSelected.name}>
+                <div className="content_item" key={slot}>
                     <div className="abilitys">
-                        <Card item={lastPokemonSelected}></Card>
+
+                        {
+                            !!details ?
+                                // <div className="container_card">
+                                //     <img role="img" src={details.img} alt={details.name} />
+                                //     <p>{details.name}</p>
+                                // </div>
+                                <ImgCard animated={true} link={details.link} link2={details.link2} name={details.name} />
+                                : <div>
+                                    <Skeleton circle={true} style={{
+
+                                        width: 100,
+                                        height: 100
+                                    }}> </Skeleton>
+
+                                </div>
+                        }
                         <div className="abilitys_list">
-                            <h2>Espécie</h2>
+                            <h2>Tipo</h2>
                             <div>
-                                {!!details ? <p>{details.species.name}</p> : <div></div>}
+                                {!!details ? <p>{details.types}</p> : <div></div>}
                             </div>
                             <h2>Habilidades</h2>
                             {
                                 !!details ? details.abilities.map((ab, i) => {
                                     return (
-                                        <div>
+                                        <div key={i}>
                                             <Desc name={ab.ability.name} url={ab.ability.url}></Desc>
                                         </div>
 
